@@ -1,15 +1,16 @@
 const n1 = prompt('Digite o 1 numero: ');
 const n2 = prompt('Digite o 2 numero: ');
 
+const x = parseFloat(n1);
+const y = parseFloat(n2);
 
-
-const soma = parseFloat(n1) + parseFloat(n2);
-const subtracao = parseFloat(n1) - parseFloat(n2);
-const multiplicacao = parseFloat(n1) * (n2);
-const divisao = parseFloat(n1 / n2);
+const soma = x + y;
+const subtracao = x - y;
+const multiplicacao = x * y;
+const divisao = x / y;
 
 alert(`
-    Soma: ${n1} + ${n2} = ${soma}\n
-    Subtração: ${n1} - ${n2} = ${subtracao}\n
-    Multiplicação: ${n1} * ${n2} = ${multiplicacao}\n
-    Divisao: ${n1} / ${n2} = ${divisao}`)
+    Soma: ${x} + ${y} = ${soma}\n
+    Subtração: ${x} - ${y} = ${subtracao}\n
+    Multiplicação: ${x} * ${y} = ${multiplicacao}\n
+    Divisao: ${x} / ${y} = ${divisao}`)
