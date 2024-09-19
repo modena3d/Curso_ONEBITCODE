@@ -10,3 +10,34 @@
 // “Encerrar”. Ao escolhe-la uma mensagem dizendo que o sistema 
 // está sendo encerrado deve ser exibida na tela e então o 
 // programa é finalizado.
+let options = '';
+do {
+    options = prompt('Escolha uma das opção a baixo:' +
+        '\n (1) -  Opcão 1' +
+        '\n (2) -  Opcão 2' +
+        '\n (3) -  Opcão 3' +
+        '\n (4) -  Opcão 4' +
+        '\n (5) -  Encerrar');
+    
+    
+    switch (options) {
+        case '1':
+            alert('Você escolheu a opção 1')
+            break;
+        case '2':
+            alert('Você escolheu a opção 2')
+            break;
+        case '3':
+            alert('Você escolheu a opção 3')
+            break;
+        case '4':
+            alert('Você escolheu a opção 4')
+            break;
+        case '5':
+            alert('O sistema está sendo encerrado...')
+            break;
+        default:
+            break;
+    }
+    
+}while(options !== '5');
