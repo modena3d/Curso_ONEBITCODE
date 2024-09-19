@@ -15,11 +15,15 @@ while (visitouCidades.toUpperCase() === "S") {
     let city = prompt('qual o nome da cidade? ');
     let visMais = prompt('Você já visitou alguma cidade a mais?\n(S)sim\n(N)não');
     citys += city + ', ';
-    let cidades = [...citys];
+    let cidades = citys.split(',');
+    console.log(cidades);
     
+    
+
     if(visMais.toUpperCase() === 'N'){
-        alert(`${nome}, visitou ${cidades.length+1}.\n
-            As cidade visitadas foram: ${citys}`)
+        const cidadesOtimizadas = cidades.slice(0, cidades.length-1);
+        alert(`${nome}, visitou: ${cidadesOtimizadas.length}, ${cidadesOtimizadas}.\n
+            As cidade visitadas foram: ${cidadesOtimizadas}`)
         break;
     };
 }
