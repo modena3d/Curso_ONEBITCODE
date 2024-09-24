@@ -16,16 +16,23 @@
 // 9-O menu também deve ter a opção de mostrar todos os imóveis salvos.
 
 
-function imoveisConst(proprietario, quartos, banheiros, garagem){
+function imoveisConst(proprietario, quartos, banheiros, garagem) {
     this.proprietario = proprietario;
     this.quartos = quartos;
     this.banheiros = banheiros;
     this.garagem = garagem;
 }
-const imv1 = new imoveisConst('Henrique', '2', '1', 'Sim')
-const imv2 = new imoveisConst('Marcelo', '3', '2', 'Sim');
+const imv1 = new imoveisConst('1-Henrique', '2', '1', 'Sim')
+const imv2 = new imoveisConst('2-Marcelo', '3', '2', 'Sim');
+const imv3 = new imoveisConst('3-Maria', '5', '3', 'Nao');
 
-let quantImovCadas = [imv1, imv2];
+let quantImovCadas = [imv1, imv2, imv3];
+// let teste = quantImovCadas.splice(2)
+// console.log(teste);
+// console.log(quantImovCadas);
+
+
+
 let imoveis = {};
 let menu = '';
 
@@ -34,9 +41,10 @@ let showImoveis;
 do {
 
     menu = prompt(`Quantidades de imoveis: ${quantImovCadas.length}\n` +
-        `1-Salvar Imóvel \n` +
+        `1-Cadastrar Imóvel \n` +
         `2-Mostrar todos os imóveis \n` +
-        `3-Sair `
+        `3-Deletar imóvel \n` +
+        `4-Sair `
     );
 
     switch (menu) {
@@ -51,28 +59,48 @@ do {
             imoveis.banheiros = quantBanheiros;
             imoveis.garagem = possuiGaragem;
             quantImovCadas.push(imoveis);
-            console.log(imoveis);
+            console.log(quantImovCadas);
 
 
             break;
         case '2':
+            let resultImov = '';
             for (let i = 0; i < quantImovCadas.length; i++) {
-                alert(
+                resultImov +=
                     `Imóvel ${(i + 1)}\n` +
                     `Proprietário:  ${quantImovCadas[i].proprietario}\n` +
                     `Quartos:  ${quantImovCadas[i].quartos}\n` +
                     `Banheiros:  ${quantImovCadas[i].banheiros}\n` +
-                    `Possui Garagem?  ${quantImovCadas[i].garagem}\n`
-                )
+                    `Possui Garagem?  ${quantImovCadas[i].garagem}\n\n`
             }
+            alert(resultImov)
             break;
         case '3':
+            removeIDImovel = prompt(`Se deseja excluir algum imóvel, digite o numero dele:`)
+            let IdNum = '';
+            IdNum = quantImovCadas.splice(Number(removeIDImovel-1), 1);
+            console.log(Number(removeIDImovel-1), 'IdNum: ', IdNum);
+            console.log(quantImovCadas);
+            
+            
+            resultImov2 =
+                    `Imóvel: ${(Number(removeIDImovel-1) + 1)}\n` +
+                    `Proprietário:  ${IdNum[Number(removeIDImovel-1)].proprietario}\n` +
+                    `Quartos:  ${IdNum[Number(removeIDImovel-1)].banheiros}\n` +
+                    `Possui Garagem?  ${IdNum[Number(removeIDImovel-1)].garagem}\n\n`
+
+            alert(`O imovel que deseja remover é o de numero: ${removeIDImovel}\n` +
+                `${resultImov2}`
+            )
+
+            break;
+        case '4':
             alert('Programa sendo encerrado...')
             break;
         default:
             alert('Comando inválido tente novamente...')
     }
-} while (menu !== '3');
+} while (menu !== '4');
 
 
 /* -------------TESTES--------------
