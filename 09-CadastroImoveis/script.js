@@ -67,6 +67,9 @@ do {
 
             break;
         case '2':
+            if(imoveis.length < 1){
+                alert('Nenhum Imóvel cadastrado...')
+            }
             for (let i = 0; i < imoveis.length; i++) {
                 alert(
                     `Imóvel ${(i + 1)}\n` +
@@ -77,17 +80,17 @@ do {
             }
             break;
         case '3':
-            removeIDImovel = prompt(`Se deseja excluir algum imóvel, digite o numero dele:`)
-            let IdNum = '';
-            IdNum = imoveis.splice(Number(removeIDImovel - 1), 1);
-            console.log(Number(removeIDImovel - 1), 'IdNum: ', IdNum);
-            console.log(imoveis);
-
-            alert(`O imovel que deseja remover é o de numero: ${removeIDImovel}\n` +
-                `Proprietário:  ${IdNum[Number(removeIDImovel - 1)].proprietario}\n` +
-                `Quartos:  ${IdNum[Number(removeIDImovel - 1)].banheiros}\n` +
-                `Possui Garagem?  ${IdNum[Number(removeIDImovel - 1)].garagem}\n\n`
+            idNum = prompt(`Se deseja excluir algum imóvel, digite o numero dele:`)
+            let idImovel = '';
+            // console.log(Number(idNum - 1), 'idImovel: ', idImovel);
+            // console.log(imoveis);
+            console.log(imoveis[Number(idNum - 1)].proprietario);
+            alert(`O imovel que deseja remover é o de numero: ${idNum}\n` +
+                `Proprietário:  ${imoveis[Number(idNum - 1)].proprietario}\n` + 
+                `Quartos:  ${imoveis[Number(idNum - 1)].banheiros}\n` +
+                `Possui Garagem?  ${imoveis[Number(idNum - 1)].garagem}\n\n`
             )
+            idImovel = imoveis.splice(Number(idNum - 1), 1);
 
             break;
         case '4':
