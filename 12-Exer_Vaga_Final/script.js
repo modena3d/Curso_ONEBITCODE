@@ -27,6 +27,7 @@
 let vagas = [];
 let vaga = {};
 let candidatos = [];
+let candidato = {};
 
 function start() {
     let option = '';
@@ -40,10 +41,10 @@ function start() {
                 criarVaga()
                 break;
             case '3':
-
+                visualizarVagas()
                 break;
             case '4':
-
+                inscreverCandidato() 
                 break;
             case '5':
 
@@ -64,7 +65,7 @@ function menu() {
     const menu = prompt(
         'Sistema Vg Ploy:\n' +
         '1-Listar vagas disponíveis\n' +
-        '2-Criar um nova vaga\n' +
+        '2-Criar uma nova vaga\n' +
         '3-Visualizar uma vaga\n' +
         '4-Inscrever um candidato em uma vaga\n' +
         '5-Excluir uma vaga\n' +
@@ -76,7 +77,7 @@ function menu() {
 function listarVagas() {
     if (vagas.length > 0) {
         const resultVagas = vagas.reduce((text, vaga, indice) => {
-            text += `Nº: ${indice} - Vaga: ${vaga.nome} - Descrição: ${vaga.descricao} - numero de candidatos: ${candidatos.length}\n`
+            text += `Nº: ${indice + 1} - Vaga: ${vaga.nome} - numero de candidatos: ${candidatos.length}\n`
             return text;
         }, '')
         alert(resultVagas)
@@ -88,9 +89,34 @@ function listarVagas() {
 function criarVaga() {
     const nomeVaga = prompt('Digite o nome da vaga:');
     const descricao = prompt('Descreva sobre a vaga:');
+    const dataLimite = prompt('Descreva a data limite:');
     vaga = {};
     vaga.nome = nomeVaga;
     vaga.descricao = descricao;
+    vaga.dataLimite = dataLimite;
     vagas.push(vaga);
     console.log(vagas);
+}
+
+function visualizarVagas() {
+    const digIndice = prompt('Digite o numero da vaga:')
+    if (vagas[digIndice -1]) {        
+        const resultVagas = `Nº: ${digIndice} - Vaga: ${vagas[digIndice - 1].nome} - Descrição: ${vagas[digIndice - 1].descricao} - Data limite: ${vagas[digIndice - 1].dataLimite} - numero de candidatos: ${candidatos.length}\n`
+        alert(resultVagas)
+    } else {
+        alert('Nenhuma vaga cadastrada.')
+    }
+}
+
+function inscreverCandidato() {
+    const nomeCandidato = prompt('Digite o nome do candidado:')
+    const indiceVaga = prompt('Digite o numero da vaga:')
+    candidato = {};
+    candidato.nome = nomeCandidato;
+    candidatos.push(candidato);
+    vagas[indiceVaga-1].push(candidato)
+    const descrVag = vagas[indiceVaga+1].candidato
+    console.log(descrVag);
+    
+    
 }
