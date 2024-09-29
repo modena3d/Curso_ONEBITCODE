@@ -9,3 +9,15 @@
 // 4 Caso encontre, a inversão deve ser parada onde estiver
 // 5 O nome invertido deve ser impresso
 // Mesmo que não esteja completo por ter encontrado um caractere proibido
+
+const nome = prompt('Digite o nome da nave:')
+let nomeReverse = ''
+console.log(nome.length);
+
+for (let i = nome.length - 1; i >= 0; i--) {
+  if (nome[i] === 'e') {
+    break
+  }
+  nomeReverse += nome[i];
+}
+alert(`Nome: ${nome}\n` + `Reverso: ${nomeReverse}`)
