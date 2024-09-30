@@ -19,31 +19,50 @@
 // 3 Encerrar o app somente quando digitar para sair.
 
 // Lembre-se que funções podem ser chamadas e construídas à vontade para estruturar seu código: dentro de switches, ifs, elses, estruturas de repetição. Deixa o espírito de programador fluir! =)
-let menu = ''
+let speed = 0;
+let menu = '';
+
+let nave = prompt('Digite o nome da nave:')
 
 
-function start() {
-  const nave = prompt('Digite o nome da nave:')
-  menu = prompt('Escolhas umas das opções a baixo:\n' + '1- Acelerar a nave em 5km/s\n' + '2- Desacelerar em 5km/s\n' + '3- Imprimir dados de bordo\n' + '4- Sair')
-  let speed = 0;
-  console.log(menu);
+function speedNave() {
+  speed += 5
+}
+function slowNave(){
+  if (speed >0) {
+    speed -= 5
+  }else{
+    alert('A nave já se encontra parada')
+  }
 }
 
-function speedNave(nave, speed) {
-  console.log('SPACE');
-
+function showMenu() {
+  let option
+  while (option !== '1' && option != '2' && option != '3' && option != '4')
+    option = prompt('Escolhas umas das opções a baixo:\n' +
+      '1- Acelerar a nave em 5km/s\n' +
+      '2- Desacelerar em 5km/s\n' +
+      '3- Imprimir dados de bordo\n' +
+      '4- Sair')
+return option
 }
+
+function dadosBordo(){
+  alert ('Nave: '+ nave + '\n' + 'Speed: '+ speed + ' km')
+}
+
 
 do {
+  menu = showMenu()
   switch (menu) {
     case '1':
       speedNave()
       break;
     case '2':
-
+      slowNave()
       break;
     case '3':
-
+      dadosBordo();
       break;
     case '4':
       alert('Encerrando o programa...')
@@ -53,4 +72,3 @@ do {
   }
 } while (menu !== '4');
 
-start()
