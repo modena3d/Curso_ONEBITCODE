@@ -40,3 +40,66 @@
 // • Se ele quiser acelerar, precisamos de um prompt para que o usuário informe o quanto quer acelerar
 // • Exibir uma mensagem de alerta quando a velocidade máxima for ultrapassada
 // • Criar um objeto para a nave
+
+
+const nomeNave = prompt('Digite o nome da Nave:')
+const tipoNave = prompt('Digite o tipo da Nave:')
+const velMax = prompt('Qual a velocidade Máxima permetida?')
+
+let speed = 0;
+
+function dashBoard() {
+    alert(`VELOCIDADE MÁXIMA ULTRAPASSADA!\n` +
+        `Velocidade da Nave: ${speed}km/s\n` +
+        `Velocidade máxima da Nave: ${velMax}km/s`
+    )
+}
+
+function acelerar(speed) {
+    console.log('SPEED:', speed);
+    speed = prompt('Quanto deseja acelerar? (km/s)')
+    speed = Number(speed)
+    if (speed >= velMax) {
+        dashBoard()
+        speed += speed;
+        console.log('If speed:', speed);
+        console.log('If velMax:', velMax);
+        return speed
+    } else {
+        speed += speed;
+        console.log('Else speed:', speed);
+        console.log('Else velMax:', velMax);
+        return speed
+    }
+}
+
+function stop(speed) {
+    console.log('Stop: ', speed);
+    
+    alert(`Nome: ${nomeNave}\n` +
+        `Tipo: ${tipoNave}\n` +
+        `Velocidade da nave: ${speed}km/s\n` +
+        `Máxima da Nave: ${velMax}km/s`
+    )
+}
+
+function showMenu() {
+    let menu;
+    do {
+        menu = prompt('Escolha uma das opções a baixo:\n' +
+            `1- Acelerar\n` +
+            `2- Parar a Nave`)
+
+        switch (menu) {
+            case '1':
+                acelerar(speed)
+                break;
+            case '2':
+                stop(speed)
+                break;
+            default:
+                alert('Opção inválida, tente novamente...')
+        }
+    } while (menu !== '2');
+}
+showMenu()
