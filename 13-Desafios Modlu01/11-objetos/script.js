@@ -42,44 +42,41 @@
 // • Criar um objeto para a nave
 
 
-const nomeNave = prompt('Digite o nome da Nave:')
-const tipoNave = prompt('Digite o tipo da Nave:')
-const velMax = prompt('Qual a velocidade Máxima permetida?')
-
-let speed = 0;
-
-function dashBoard() {
-    alert(`VELOCIDADE MÁXIMA ULTRAPASSADA!\n` +
-        `Velocidade da Nave: ${speed}km/s\n` +
-        `Velocidade máxima da Nave: ${velMax}km/s`
-    )
-}
-
-function acelerar(speed) {
-    console.log('SPEED:', speed);
-    speed = prompt('Quanto deseja acelerar? (km/s)')
-    speed = Number(speed)
-    if (speed >= velMax) {
-        dashBoard()
-        speed += speed;
-        console.log('If speed:', speed);
-        console.log('If velMax:', velMax);
-        return speed
-    } else {
-        speed += speed;
-        console.log('Else speed:', speed);
-        console.log('Else velMax:', velMax);
-        return speed
+let nave = {
+    velocidade: 0,
+    acelerarUp: function (aceleracao) {
+        this.velocidade += aceleracao
     }
 }
 
-function stop(speed) {
-    console.log('Stop: ', speed);
-    
-    alert(`Nome: ${nomeNave}\n` +
-        `Tipo: ${tipoNave}\n` +
-        `Velocidade da nave: ${speed}km/s\n` +
-        `Máxima da Nave: ${velMax}km/s`
+function registrarNave() {
+    nave.name = prompt('Digite o nome da Nave:')
+    nave.tipo = prompt('Digite o tipo da Nave:')
+    nave.velMax = prompt('Qual a velocidade Máxima permetida?')
+}
+
+function acelerar() {
+    let aceleracao = Number(prompt('Quanto você quer acelerar? (km/s)'))
+    nave.acelerarUp(aceleracao)
+    if (nave.velocidade >= nave.velMax) {
+        alert("VELOCIDADE MÁXIMA ULTRAPASSADA!" +
+            "\nVelocidade da Nave: " + nave.velocidade + "km/s" +
+            "\nVelocidade máxima da Nave: " + nave.velMax + "km/s")
+    }
+}
+
+function stop() {
+    alert(`Nome: ${nave.name}\n` +
+        `Tipo: ${nave.tipo}\n` +
+        `Velocidade da nave: ${nave.velocidade}km/s\n` +
+        `Máxima da Nave: ${nave.velMax}km/s`
+    )
+}
+
+function dashBoard() {
+    alert(`VELOCIDADE MÁXIMA ULTRAPASSADA!\n` +
+        `Velocidade da Nave: ${nave.velocidade}km/s\n` +
+        `Velocidade máxima da Nave: ${nave.velMax}km/s`
     )
 }
 
@@ -92,14 +89,15 @@ function showMenu() {
 
         switch (menu) {
             case '1':
-                acelerar(speed)
+                acelerar()
                 break;
             case '2':
-                stop(speed)
+                stop()
                 break;
             default:
                 alert('Opção inválida, tente novamente...')
         }
     } while (menu !== '2');
 }
+registrarNave()
 showMenu()
