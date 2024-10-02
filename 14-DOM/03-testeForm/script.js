@@ -29,7 +29,7 @@ let id = 0;
 
 btnAdd.addEventListener('click', function () {
   let nome = document.getElementById('nome').value
-  console.log(nome);
+  // console.log(nome);
 
   const li = document.createElement('li')
   li.id = 'id-' + id++
@@ -94,23 +94,30 @@ btnAdd.addEventListener('click', function () {
 const btnCadastrar = document.getElementById('btnCadastrar')
 btnCadastrar.addEventListener('click', function (eve) {
   eve.preventDefault()
+  let dev = {}
   const nome = document.getElementById('nome').value
-  
+  let cont = 0;
+  dev.tecs = []
+
   if (nome.length > 0) {
-    developers.nome = nome
-    developers.tecs = inputLinguagens.value
+    dev.nome = nome
+    dev.tecs[cont++]
+    developers.push(dev)
+    console.log(developers);
+
   } else {
     alert('Por favor, preencha o Nome Completo...')
   }
-  
+
   const listTecs = document.querySelectorAll('li')
   listTecs.forEach(li => {
-    tecs.push(li.firstElementChild.value)
+    dev.tecs.push(li.firstElementChild.value)
   })
-  console.log(tecs);
+  // console.log(tecs);
 
   // console.log(nome);
 })
 
 
 
+// developers = [dev1{nome: , tec: [] ,} , ]
