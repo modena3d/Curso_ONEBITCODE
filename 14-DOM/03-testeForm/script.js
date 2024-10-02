@@ -22,53 +22,95 @@
 
 const btnAdd = document.getElementById('btnAddNewTec')
 const ulList = document.getElementById('ulList')
+let developers = [];
+let tecs = []
 // console.log(list);
 let id = 0;
 
-  btnAdd.addEventListener('click',function(){
-    const li = document.createElement('li')
-    li.id = 'id-' + id++
-    li.innerText = 'Nome: '
-    ulList.appendChild(li)
-    const inputLinguagens =  document.createElement('input')
-    inputLinguagens.id = li.id
-    li.appendChild(inputLinguagens)
-    const btnRadio1 = document.createElement('input')
-    const LbParagraf1 = document.createElement('label')
-    const LabelRadio1 = document.createElement('label')
-    LbParagraf1.innerText =' Experiência: '
-    LabelRadio1.innerText = '0-2 anos'
-    btnRadio1.type = 'radio'
-    btnRadio1.name = 'xp'
-    LabelRadio1.htmlFor = 'xp1'
-    btnRadio1.id = 'xp1'
-    li.appendChild(LbParagraf1)
-    li.appendChild(btnRadio1)
-    li.appendChild(LabelRadio1)
-    const btnRadio2 = document.createElement('input')
-    const LabelRadio2 = document.createElement('label')
-    LabelRadio2.innerText = '3-4 anos'
-    btnRadio2.type = 'radio'
-    btnRadio2.name = 'xp'
-    LabelRadio2.htmlFor = 'xp2'
-    btnRadio2.id = 'xp2'
-    li.appendChild(btnRadio2)
-    li.appendChild(LabelRadio2)
-    const btnRadio3 = document.createElement('input')
-    const LabelRadio3 = document.createElement('label')
-    LabelRadio3.innerText = '5+ anos '
-    btnRadio3.type = 'radio'
-    btnRadio3.name = 'xp'
-    LabelRadio3.htmlFor = 'xp3'
-    btnRadio3.id = 'xp3'
-    li.appendChild(btnRadio3)
-    li.appendChild(LabelRadio3)
-    const btnRemover = document.createElement('button')
-    btnRemover.innerText = 'Remover'
-    btnRemover.id = 'btnDel_' + id
-    li.appendChild(btnRemover)
-    const br = document.createElement('br')
-    br.innerHTML = '<br>'
-    li.appendChild(br)
-    
+btnAdd.addEventListener('click', function () {
+  let nome = document.getElementById('nome').value
+  console.log(nome);
+
+  const li = document.createElement('li')
+  li.id = 'id-' + id++
+  li.innerText = 'Nome: '
+  ulList.appendChild(li)
+  const inputLinguagens = document.createElement('input')
+  inputLinguagens.id = li.id
+  li.appendChild(inputLinguagens)
+  const btnRadio1 = document.createElement('input')
+  const LbParagraf1 = document.createElement('label')
+  const LabelRadio1 = document.createElement('label')
+  LbParagraf1.innerText = ' Experiência: '
+  LabelRadio1.innerText = '0-2 anos'
+  btnRadio1.type = 'radio'
+  btnRadio1.name = 'xp' + id
+  LabelRadio1.htmlFor = 'xp1_' + id
+  btnRadio1.id = 'xp1_' + id
+  li.appendChild(LbParagraf1)
+  li.appendChild(btnRadio1)
+  li.appendChild(LabelRadio1)
+  const btnRadio2 = document.createElement('input')
+  const LabelRadio2 = document.createElement('label')
+  LabelRadio2.innerText = '3-4 anos'
+  btnRadio2.type = 'radio'
+  btnRadio2.name = 'xp' + id
+  LabelRadio2.htmlFor = 'xp2_' + id
+  btnRadio2.id = 'xp2_' + id
+  li.appendChild(btnRadio2)
+  li.appendChild(LabelRadio2)
+  const btnRadio3 = document.createElement('input')
+  const LabelRadio3 = document.createElement('label')
+  LabelRadio3.innerText = '5+ anos '
+  btnRadio3.type = 'radio'
+  btnRadio3.name = 'xp' + id
+  LabelRadio3.htmlFor = 'xp3_' + id
+  btnRadio3.id = 'xp3_' + id
+  li.appendChild(btnRadio3)
+  li.appendChild(LabelRadio3)
+  const btnRemover = document.createElement('button')
+  btnRemover.innerText = 'Remover'
+  btnRemover.id = 'btnDel_'
+  btnRemover.addEventListener('click', function () {
+    li.remove()
+    if (tecs.length > 0) {
+      tecs.pop()
+      console.log(tecs);
+
+    } else {
+      console.log(tecs.length);
+
+    }
   })
+  li.appendChild(btnRemover)
+  const br = document.createElement('br')
+  br.innerHTML = '<br>'
+  li.appendChild(br)
+  // developers.push(li)
+
+})
+
+
+const btnCadastrar = document.getElementById('btnCadastrar')
+btnCadastrar.addEventListener('click', function (eve) {
+  eve.preventDefault()
+  const nome = document.getElementById('nome').value
+  
+  if (nome.length > 0) {
+    developers.nome = nome
+    developers.tecs = inputLinguagens.value
+  } else {
+    alert('Por favor, preencha o Nome Completo...')
+  }
+  
+  const listTecs = document.querySelectorAll('li')
+  listTecs.forEach(li => {
+    tecs.push(li.firstElementChild.value)
+  })
+  console.log(tecs);
+
+  // console.log(nome);
+})
+
+
+
