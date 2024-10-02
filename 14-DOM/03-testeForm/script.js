@@ -96,18 +96,24 @@ btnCadastrar.addEventListener('click', function (eve) {
   eve.preventDefault()
   let dev = {}
   const nome = document.getElementById('nome').value
-  let cont = 0;
+  let count = 0;
   dev.tecs = []
-
+  
   if (nome.length > 0) {
     dev.nome = nome
-    dev.tecs[cont++]
+    dev.tecs[count++]
     developers.push(dev)
     console.log(developers);
-
+    if (dev.tecs.length > 0) {
+      
+    } else {
+      alert('Por favor, adicione uma experiencia...')
+    }
   } else {
     alert('Por favor, preencha o Nome Completo...')
   }
+  console.log('?: ', developers, 'end'); //////////////BUG
+  
 
   const listTecs = document.querySelectorAll('li')
   listTecs.forEach(li => {
