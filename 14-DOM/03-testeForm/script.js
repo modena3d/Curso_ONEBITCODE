@@ -121,6 +121,12 @@ btnCadastrar.addEventListener('click', function (eve) {
         alert('Por favor, preencha o Nome da tecnologia...')
       }
     }
+    const checks = document.querySelectorAll('input[type="radio"]')
+    console.log(checks);
+    checks.forEach((check)=>{
+      check.checked
+    })
+
 
     } else {
       alert('Por favor, adicione uma experiencia...')
