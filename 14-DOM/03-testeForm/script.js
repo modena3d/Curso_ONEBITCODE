@@ -98,24 +98,33 @@ btnCadastrar.addEventListener('click', function (eve) {
   dev.tecs = []
   const nome = document.getElementById('nome').value
   let count = 0;
+  let tecsSize;
 
   const listTecs = document.querySelectorAll('li')
   listTecs.forEach(li => {
     dev.tecs.push(li.firstElementChild.value)
   })
   if (nome.length > 0) {
+    // console.log('?: ', developers[developers.length-1].tecs.length, 'end'); //////////////BUG
     dev.nome = nome
     dev.tecs[count++]
+    // console.log(developers[developers.length-1].tecs.length);  
     developers.push(dev)
-    console.log(developers);
-    console.log(count);
+    tecsSize = developers[developers.length-1].tecs
+    console.log(tecsSize);//////
+    const li = document.getElementsByTagName('li')
     
-    console.log('?: ', developers[developers.length-1].tecs.length, 'end'); //////////////BUG
-    // if (dev.tecs.length > 0) {
-      
-    // } else {
-    //   alert('Por favor, adicione uma experiencia...')
-    // }
+    if ( li.length > 0) {
+      for (let i = 0; i < tecsSize.length; i++) {
+      console.log('tec:', tecsSize[i]);
+      if (tecsSize[i].length === 0) {
+        alert('Por favor, preencha o Nome da tecnologia...')
+      }
+    }
+
+    } else {
+      alert('Por favor, adicione uma experiencia...')
+    }
   } else {
     alert('Por favor, preencha o Nome Completo...')
   }
