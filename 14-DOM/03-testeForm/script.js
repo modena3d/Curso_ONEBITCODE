@@ -98,11 +98,16 @@ btnCadastrar.addEventListener("click", function (eve) {
   let groupRadio;
   const listTecs = document.querySelectorAll("li");
   console.log(listTecs);
-
+  let fullNameOk = false;
+  let fullTecksOk = false;
+  let fullChecksOk = false;
+  //-----Verifica se o campo Nome Completo foi preenchido---------------------------////////
   if (nome.length > 0) {
     dev.nome = nome;
     dev.tecs[count++];
     dev.xp[count++];
+    fullNameOk = true;
+    //-----push Dev.tecs names---------------------------////////
     listTecs.forEach((li) => {
       const arrayLi = Array.from(li.getElementsByTagName("input"));
       if (arrayLi[0]) {
@@ -112,20 +117,20 @@ btnCadastrar.addEventListener("click", function (eve) {
       }
     });
     tecsSize = dev.tecs;
-    console.log("TecSize: ", tecsSize);
     xpSize = dev.xp;
-    console.log(`DEV...`, developers);
-
-    console.log("TecSize: ", tecsSize);
     const li = document.getElementsByTagName("li");
+    //-----Verifica se li das tecs existem---------------------------////////
     if (li.length > 0) {
-      ///------Tecs--------
+      //-----Verifica se as Li estao preenchidas---------------------------////////
       for (let i = 0; i < tecsSize.length; i++) {
         if (tecsSize[i].length === 0) {
           alert("Por favor, preencha o Nome da tecnologia...");
           break;
+        } else {
+          fullTecksOk = true;
         }
       }
+      //----Verifica se as os Radios e um push dev.xp------------------------////////
       listTecs.forEach((li) => {
         groupRadio = Array.from(li.querySelectorAll('li input[type="radio"]'));
         const isAnyChecked = groupRadio.some((radio) => radio.checked);
@@ -138,19 +143,29 @@ btnCadastrar.addEventListener("click", function (eve) {
         });
         if (!isAnyChecked) {
           const inputName = li.getElementsByTagName("input");
+          fullChecksOk = false;
           alert(
             `Selecione o tempo de experiência da(s) tecnologia(s): ${inputName[0].value}`
           );
+        } else {
+          fullChecksOk = true;
         }
       });
     } else {
+      fullTecksOk = false;
       alert("Por favor, adicione uma experiencia...");
     }
   } else {
+    fullNameOk = false;
     alert("Por favor, preencha o Nome Completo...");
   }
-  developers.push(dev);
-  console.log("Final: ", developers);
+  if (fullNameOk && fullTecksOk && fullChecksOk) {
+    developers.push(dev);
+    console.log("Final: ", developers);
+    fullNameOk = false;
+    fullTecksOk = false;
+    fullChecksOk = false;
+  }
 });
 
 function verificadorInputTecs(listTecs) {}
