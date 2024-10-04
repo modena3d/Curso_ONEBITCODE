@@ -27,10 +27,8 @@ let tecs = [];
 // console.log(list);
 let id = 0;
 
+//---------ADD TECS---------------//
 btnAdd.addEventListener("click", function () {
-  let nome = document.getElementById("nome").value;
-  // console.log(nome);
-
   const li = document.createElement("li");
   li.id = "id-" + id++;
   li.innerText = "Nome: ";
@@ -87,11 +85,13 @@ btnAdd.addEventListener("click", function () {
   // developers.push(li)
 });
 
+//---------CADASTRO---------------//
 const btnCadastrar = document.getElementById("btnCadastrar");
 btnCadastrar.addEventListener("click", function (eve) {
   eve.preventDefault();
   let dev = {};
   dev.tecs = [];
+  dev.xp = [];
   const nome = document.getElementById("nome").value;
   let count = 0;
   let tecsSize;
@@ -105,10 +105,11 @@ btnCadastrar.addEventListener("click", function (eve) {
   if (nome.length > 0) {
     dev.nome = nome;
     dev.tecs[count++];
-    dev.xp = developers.push(dev);
+    dev.xp[count++];
+    developers.push(dev); //---------ATENCAO AQUI
     tecsSize = developers[developers.length - 1].tecs;
-    radioSize = developers[developers.length - 1];
-    // console.log(`RADIO...`, radioSize);
+    xpSize = developers[developers.length - 1].xp;
+    console.log(`DEV...`, developers);
 
     const li = document.getElementsByTagName("li");
 
@@ -126,6 +127,15 @@ btnCadastrar.addEventListener("click", function (eve) {
         groupRadio = Array.from(li.querySelectorAll('li input[type="radio"]'));
         // console.log(groupRadio);
         const isAnyChecked = groupRadio.some((radio) => radio.checked);
+        groupRadio.filter((radio, index) => {
+          if (radio.checked) {
+            const label = li.getElementsByTagName("label");
+            console.log(label[index + 1].innerText);
+            dev.xp.push(label[index + 1].innerText);
+            // console.log("XP: ", developers);
+          }
+        });
+        // console.log("?:", xpChecked);
         if (!isAnyChecked) {
           const inputName = li.getElementsByTagName("input");
           alert(
@@ -133,30 +143,14 @@ btnCadastrar.addEventListener("click", function (eve) {
           );
         }
       });
-      //-----------------------
-      // let radioInputs;
-      // for (let i = 0; i < li.length; i++) {
-      //   // console.log(`LI: `, li[i].getElementsByTagName("input"));
-      //   const inputs = li[i].getElementsByTagName("input");
-      //   radioInputs = Array.from(inputs).filter(
-      //     (input) => input.type === "radio"
-      //   );
-      // }
-      // console.log("radioInp: ", radioInputs);
-      // const isAnyChecked = radioInputs.some((radio) => radio.checked);
-      // if (!isAnyChecked) {
-      //   alert(`Selecione o tempo de experiência da(s) tecnologia(s): `);
-      // }
     } else {
       alert("Por favor, adicione uma experiencia...");
     }
+    developers.push(dev);
   } else {
     alert("Por favor, preencha o Nome Completo...");
   }
 
   // console.log(tecs);
-
-  // console.log(nome);
+  console.log("Final: ", developers);
 });
-
-// developers = [dev1{nome: , tec: [] ,} , ]
