@@ -102,14 +102,14 @@ btnCadastrar.addEventListener("click", function (eve) {
   //-----Verifica se o campo Nome Completo foi preenchido---------------------------////////
   if (nome.length > 0) {//verifica se o nome está preenchido
     dev.nome = nome;
-    verificadorInputTecs(getAllLis, dev, infs)
+    verifInputNamesTecs(getAllLis, dev, infs)
     verifInputRadios(getAllLis, dev, infs)
   } else {
     alert("Por favor, preencha o Nome Completo...");
   }
 });
 
-function verificadorInputTecs(getAllLis, dev, infs) {
+function verifInputNamesTecs(getAllLis, dev, infs) {
   getAllLis.forEach((li) => {
     // Converte para array e busca todos os inputs
     const firstInput = Array.from(li.getElementsByTagName("input"));
@@ -126,13 +126,26 @@ function verificadorInputTecs(getAllLis, dev, infs) {
 
 function verifInputRadios(getAllLis, dev, infs) {
   getAllLis.forEach((li) => {
-    const checks = li.querySelectorAll('input[type="radio"]')
-    console.log(checks);
+    const checks = li.querySelectorAll('input[type="radio"]')//pega todos os inputs da li
     const checkedRadio = Array.from(checks).find(radio => radio.checked);
     if (checkedRadio) {
-      console.log("Um rádio está marcado:", checkedRadio.value);
+      // console.log("Um rádio está marcado:", checkedRadio.id);
+      mathLabelsRadio(li, checkedRadio.id, dev, infs);
     } else {
       console.log("Nenhum rádio está marcado nesta <li>.");
+    }
+  })
+}
+
+function mathLabelsRadio(li, checkedRadio, dev, infs) {
+  const labels = li.querySelectorAll('label')
+  labels.forEach(label => {
+    if (checkedRadio === label.htmlFor) {
+      for (let i = 0; i < dev.tecnologias.length; i++) {
+        console.log('TEC: ', dev.tecnologias[i]);
+      }
+      // dev.tecnologias.push(infs.exp = label.innerText)
+      // console.log(dev.tecnologias);
     }
   })
 }
@@ -144,3 +157,8 @@ function verifInputRadios(getAllLis, dev, infs) {
 // dev.name
 // tecnologias = []
 // infs = {}
+
+let devTest = {//devTest.tecnologias[0].exp
+  nome: 'Jose',
+  tecnologias: [{nome: 'C++', exp: '5+anos'}, {nome: 'Java', exp: '4+anos'}]
+}
