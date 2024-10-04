@@ -97,45 +97,45 @@ btnCadastrar.addEventListener("click", function (eve) {
   let tecsSize;
   let groupRadio;
   const listTecs = document.querySelectorAll("li");
-  listTecs.forEach((li) => {
-    dev.tecs.push(li.firstElementChild.value);
-    groupRadio = Array.from(li.querySelectorAll('li input[type="radio"]'));
-  });
+  console.log(listTecs);
 
   if (nome.length > 0) {
     dev.nome = nome;
     dev.tecs[count++];
     dev.xp[count++];
-    developers.push(dev); //---------ATENCAO AQUI
-    tecsSize = developers[developers.length - 1].tecs;
-    xpSize = developers[developers.length - 1].xp;
+    listTecs.forEach((li) => {
+      const arrayLi = Array.from(li.getElementsByTagName("input"));
+      if (arrayLi[0]) {
+        const name = arrayLi[0].value;
+        console.log(name);
+        dev.tecs.push(name);
+      }
+    });
+    tecsSize = dev.tecs;
+    console.log("TecSize: ", tecsSize);
+    xpSize = dev.xp;
     console.log(`DEV...`, developers);
 
+    console.log("TecSize: ", tecsSize);
     const li = document.getElementsByTagName("li");
-
     if (li.length > 0) {
       ///------Tecs--------
       for (let i = 0; i < tecsSize.length; i++) {
-        console.log("tec:", tecsSize[i]);
         if (tecsSize[i].length === 0) {
           alert("Por favor, preencha o Nome da tecnologia...");
           break;
         }
       }
-
       listTecs.forEach((li) => {
         groupRadio = Array.from(li.querySelectorAll('li input[type="radio"]'));
-        // console.log(groupRadio);
         const isAnyChecked = groupRadio.some((radio) => radio.checked);
         groupRadio.filter((radio, index) => {
           if (radio.checked) {
             const label = li.getElementsByTagName("label");
             console.log(label[index + 1].innerText);
             dev.xp.push(label[index + 1].innerText);
-            // console.log("XP: ", developers);
           }
         });
-        // console.log("?:", xpChecked);
         if (!isAnyChecked) {
           const inputName = li.getElementsByTagName("input");
           alert(
@@ -146,11 +146,11 @@ btnCadastrar.addEventListener("click", function (eve) {
     } else {
       alert("Por favor, adicione uma experiencia...");
     }
-    developers.push(dev);
   } else {
     alert("Por favor, preencha o Nome Completo...");
   }
-
-  // console.log(tecs);
+  developers.push(dev);
   console.log("Final: ", developers);
 });
+
+function verificadorInputTecs(listTecs) {}
