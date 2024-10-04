@@ -93,84 +93,79 @@ btnCadastrar.addEventListener("click", function (eve) {
   let dev = {};
   dev.tecnologias = [];
   let infs = {}
-  // dev.xp = [];
   const nome = document.getElementById("nome").value;
-  let count = 0;
-  let tecnologiasSize;
-  let groupRadio;
-  const listtecnologias = document.querySelectorAll("li");
-  console.log(listtecnologias);
-  let fullNameOk = false;
-  let fullTecksOk = false;
-  let fullChecksOk = false;
+  const getAllLis = document.querySelectorAll("li");
   //-----Verifica se o campo Nome Completo foi preenchido---------------------------////////
   if (nome.length > 0) {
     dev.nome = nome;
-    dev.tecnologias[count++];
-    dev.xp[count++];
-    fullNameOk = true;
     //-----push Dev.tecnologias names---------------------------////////
-    listtecnologias.forEach((li) => {
-      const arrayLi = Array.from(li.getElementsByTagName("input"));
-      if (arrayLi[0]) {
-        const name = arrayLi[0].value;
-        console.log(name);
-        dev.tecnologias.push(name);
+    getAllLis.forEach((li) => {
+      const firstInput = Array.from(li.getElementsByTagName("input"));
+      if (firstInput[0]) {// first input
+        console.log('FirstInput: ', firstInput[0]);
+        const name = firstInput[0].value;
+        // console.log(name);
+        // console.log('INFOName: ',infs.nome = name);
+        dev.tecnologias.push(infs);
+        console.log('Point: ', dev);
+        // [{name: Jose Nobrega,
+        //   tecnologias:[{name:JS, exp: 0-anos}]
+        // }]
       }
     });
-    tecnologiasSize = dev.tecnologias;
-    xpSize = dev.xp;
-    const li = document.getElementsByTagName("li");
-    //-----Verifica se li das tecnologias existem---------------------------////////
-    if (li.length > 0) {
-      //-----Verifica se as Li estao preenchidas---------------------------////////
-      for (let i = 0; i < tecnologiasSize.length; i++) {
-        if (tecnologiasSize[i].length === 0) {
-          alert("Por favor, preencha o Nome da tecnologia...");
-          break;
-        } else {
-          fullTecksOk = true;
-        }
-      }
-      //----Verifica se as os Radios e um push dev.xp------------------------////////
-      listtecnologias.forEach((li) => {
-        groupRadio = Array.from(li.querySelectorAll('li input[type="radio"]'));
-        const isAnyChecked = groupRadio.some((radio) => radio.checked);
-        groupRadio.filter((radio, index) => {
-          if (radio.checked) {
-            const label = li.getElementsByTagName("label");
-            console.log(label[index + 1].innerText);
-            dev.xp.push(label[index + 1].innerText);
-          }
-        });
-        if (!isAnyChecked) {
-          const inputName = li.getElementsByTagName("input");
-          fullChecksOk = false;
-          alert(
-            `Selecione o tempo de experiência da(s) tecnologia(s): ${inputName[0].value}`
-          );
-        } else {
-          fullChecksOk = true;
-        }
-      });
-    } else {
-      fullTecksOk = false;
-      alert("Por favor, adicione uma experiencia...");
-    }
+  //   tecnologiasSize = dev.tecnologias;
+  //   xpSize = dev.xp;
+  //   const li = document.getElementsByTagName("li");
+  //   //-----Verifica se li das tecnologias existem---------------------------////////
+  //   if (li.length > 0) {
+  //     //-----Verifica se as Li estao preenchidas---------------------------////////
+  //     for (let i = 0; i < tecnologiasSize.length; i++) {
+  //       if (tecnologiasSize[i].length === 0) {
+  //         alert("Por favor, preencha o Nome da tecnologia...");
+  //         break;
+  //       } else {
+  //         fullTecksOk = true;
+  //       }
+  //     }
+  //     //----Verifica se as os Radios e um push dev.xp------------------------////////
+  //     getAllLis.forEach((li) => {
+  //       groupRadio = Array.from(li.querySelectorAll('li input[type="radio"]'));
+  //       const isAnyChecked = groupRadio.some((radio) => radio.checked);
+  //       groupRadio.filter((radio, index) => {
+  //         if (radio.checked) {
+  //           const label = li.getElementsByTagName("label");
+  //           console.log(label[index + 1].innerText);
+  //           dev.xp.push(label[index + 1].innerText);
+  //         }
+  //       });
+  //       if (!isAnyChecked) {
+  //         const inputName = li.getElementsByTagName("input");
+  //         fullChecksOk = false;
+  //         alert(
+  //           `Selecione o tempo de experiência da(s) tecnologia(s): ${inputName[0].value}`
+  //         );
+  //       } else {
+  //         fullChecksOk = true;
+  //       }
+  //     });
+  //   } else {
+  //     fullTecksOk = false;
+  //     alert("Por favor, adicione uma experiencia...");
+  //   }
   } else {
     fullNameOk = false;
     alert("Por favor, preencha o Nome Completo...");
   }
-  if (fullNameOk && fullTecksOk && fullChecksOk) {
-    developers.push(dev);
-    console.log("Final: ", developers);
-    fullNameOk = false;
-    fullTecksOk = false;
-    fullChecksOk = false;
-  }
+  // if (fullNameOk && fullTecksOk && fullChecksOk) {
+  //   developers.push(dev);
+  //   console.log("Final: ", developers);
+  //   fullNameOk = false;
+  //   fullTecksOk = false;
+  //   fullChecksOk = false;
+  // }
 });
 
-function verificadorInputtecnologias(listtecnologias) {}
+function verificadorInputtecnologias(getAllLis) { }
 
 // [{name: Jose Nobrega,
 //   tecnologias:[{name:JS, exp: 0-anos}]
