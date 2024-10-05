@@ -10,31 +10,32 @@ function useDarkTheme() {
 }
 
 // Manipulando estilos através das classes utilizadas pelo CSS
-let count = 0;
+let count = 1;
 function switchTheme(count) {
-  count++
   console.log(count);
   switch (count) {
-    case '1':
-      console.log(count);
-
-      document.body.classList.add('is-light')
+    case 1:
       count++
+      document.body.classList.toggle('is-light')
       break;
-    case '2':
-      document.body.classList.add('is-dark')
+    case 2:
       count++
+      document.body.classList.toggle('is-dark')
       break;
-    case '3':
-      document.body.classList.add('is-modern')
+    case 3:
       count = 1;
+      console.log('Int:', count);
+      document.body.classList.toggle('is-modern')
       break;
     default:
       break;
   }
+  return count
 }
+document.getElementById('switchBtn').addEventListener('click', () => {
+  count = switchTheme(count)
+})
 
 // Adicionando os eventos
 document.getElementById('lightBtn').addEventListener('click', useLightTheme)
 document.getElementById('darkBtn').addEventListener('click', useDarkTheme)
-document.getElementById('switchBtn').addEventListener('click', switchTheme(count))
