@@ -4,45 +4,49 @@ const displayMesage = document.getElementById('displayMesage')
 
 
 document.getElementById('btnPlay').addEventListener('click', function (clickBtnPlay) {
-  const namePlay1 = inputNameplayer_1_X.value
-  const namePlay2 = inputNamePlayer_2_O.value
-  startGame(namePlay1, namePlay2, clickBtnPlay.target);
+  const namePlayer1 = inputNameplayer_1_X.value
+  const namePlayer2 = inputNamePlayer_2_O.value
+  startGame(namePlayer1, namePlayer2, clickBtnPlay.target);
 })
 
-function checkNameInputField(play1, play2, clickBtnPlay) {
-  if (play1 == '' || play2 == '') {
-    if (play1 == '' && !play2 == '') {
+function checkNameInputField(playerName_1, playerName_2, clickBtnPlay) {
+  if (playerName_1 == '' || playerName_2 == '') {
+    if (playerName_1 == '' && !playerName_2 == '') {
       displayMesage.innerText = `Preencha o nome do jogador 1`
-    } else if (play2 == '' && !play1 == '') {
+    } else if (playerName_2 == '' && !playerName_1 == '') {
       displayMesage.innerText = `Preencha o nome do jogador 2`
     } else {
       displayMesage.innerText = `Preencha os nomes dos jogadores`
     }
   } else {
-    checkTimePlay(play1, play2, clickBtnPlay)
-    return true
+    const playerTime = checkTimePlay(playerName_1, playerName_2, clickBtnPlay)
+    return true, playerTime
   }
 }
 
-function checkTimePlay(play1, play2, clickBtnPlay) {
-  const nametoShowInDisplayToPlay = toggleClassAddButtonPlay(play1, play2, clickBtnPlay)
-  if (nametoShowInDisplayToPlay == play1) {
-    displayMesage.innerText = `Vez do ${play1}: (X) jogar`
+
+
+function checkTimePlay(playerName_1, playerName_2, clickBtnPlay) {
+  const nametoShowInDisplayToPlay = toggleClassAddButtonPlay(playerName_1, playerName_2, clickBtnPlay)
+  if (nametoShowInDisplayToPlay == playerName_1) {
+    displayMesage.innerText = `Vez do ${playerName_1}: (X) jogar`
+    return playerName_1
   } else {
-    displayMesage.innerText = `Vez do ${play2}: (O) jogar`
+    displayMesage.innerText = `Vez do ${playerName_2}: (O) jogar`
+    return playerName_2
   }
 }
 
-function toggleClassAddButtonPlay(play1, play2, clickBtnPlay) {
-  if (clickBtnPlay.classList.contains('player1')) {
-    clickBtnPlay.classList.remove('player1')
-    clickBtnPlay.classList.add('player2')
-    return play2
+function toggleClassAddButtonPlay(playerName_1, playerName_2, clickBtnPlay) {
+  if (clickBtnPlay.classList.contains('playerName_1')) {
+    clickBtnPlay.classList.remove('playerName_1')
+    clickBtnPlay.classList.add('playerName_2')
+    return playerName_2
 
   } else {
-    clickBtnPlay.classList.remove('player2')
-    clickBtnPlay.classList.add('player1')
-    return play1
+    clickBtnPlay.classList.remove('playerName_2')
+    clickBtnPlay.classList.add('playerName_1')
+    return playerName_1
   }
 }
 
@@ -60,19 +64,33 @@ function btnPlayResetGame() {
   }
 }
 
-function activeBoard() {
+function activeBoard(playerTime, playerName_1, playerName_2) {
   document.querySelectorAll('.square').forEach(square => {
     square.addEventListener('click', function (ev) {
       console.log(ev.target);
     })
   });
+  if (playerTime == playerName_1) {
+    playersClicks(playerName_1)
+
+  } else {
+    playersClicks(playerName_2)
+  }
+
 }
 
-function startGame(play1, play2, clickBtnPlay) {
-  const letsPlay = checkNameInputField(play1, play2, clickBtnPlay)
+function playersClicks(playerName) {
+  if (playerName) {
+    const squares = []
+  }
+}
+
+function startGame(playerName_1, playerName_2, clickBtnPlay) {
+  const letsPlay = checkNameInputField(playerName_1, playerName_2, clickBtnPlay)
   if (letsPlay) {
     btnPlayResetGame()
-    activeBoard()
+    const playerTime = letsPlay;
+    activeBoard(playerTime, playerName_1, playerName_2)
   } else {
     console.log('NOT PLAY');
   }
