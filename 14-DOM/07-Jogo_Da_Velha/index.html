@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,38 @@
   <link rel="stylesheet" href="./style.css">
   <script src="./index.js" defer></script>
 </head>
+
 <body>
- <div id="board">
-  <span class="square" data-number="1">1</span>
-  <span class="square" data-number="2">2</span>
-  <span class="square" data-number="3">3</span>
-  <span class="square" data-number="4">4</span>
-  <span class="square" data-number="5">5</span>
-  <span class="square" data-number="6">6</span>
-  <span class="square" data-number="7">7</span>
-  <span class="square" data-number="8">8</span>
-  <span class="square" data-number="9">9</span>
- </div>
+  <h1>Jogo da Velha</h1>
+  <hr>
+
+  <div class="displayNames">
+    <div><label for="inputPlayer_1">Jogador: <span class="X_O">X</span></label>
+      <input type="text" id="inputPlayer_1">
+    </div>
+
+    <div>
+      <label for="inputPlayer_2">Jogador: <span class="X_O">O</span></label>
+      <input type="text" id="inputPlayer_2">
+    </div>
+  </div>
+  <hr>
+  <div class="divText">
+    <button id="btnPlay">Play</button>
+    <div id="displayMesage">Clique para jogar</div>
+  </div>
+
+  <div class="board">
+    <span class="square" data-number="1"></span>
+    <span class="square" data-number="2"></span>
+    <span class="square" data-number="3"></span>
+    <span class="square" data-number="4"></span>
+    <span class="square" data-number="5"></span>
+    <span class="square" data-number="6"></span>
+    <span class="square" data-number="7"></span>
+    <span class="square" data-number="8"></span>
+    <span class="square" data-number="9"></span>
+  </div>
 </body>
+
 </html>
