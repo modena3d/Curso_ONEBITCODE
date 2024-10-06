@@ -27,9 +27,9 @@ function checkNameInputField(play1, play2, clickBtnPlay) {
 function checkTimePlay(play1, play2, clickBtnPlay) {
   const nametoShowInDisplayToPlay = toggleClassAddButtonPlay(play1, play2, clickBtnPlay)
   if (nametoShowInDisplayToPlay == play1) {
-    displayMesage.innerText = `Vez do ${play1}: X jogar`
+    displayMesage.innerText = `Vez do ${play1}: (X) jogar`
   } else {
-    displayMesage.innerText = `Vez do ${play2}: O jogar`
+    displayMesage.innerText = `Vez do ${play2}: (O) jogar`
   }
 }
 
@@ -46,20 +46,34 @@ function toggleClassAddButtonPlay(play1, play2, clickBtnPlay) {
   }
 }
 
+function btnPlayResetGame() {
+  console.log('PLAY');
+  const btnPlay = document.getElementById('btnPlay')
+  const textBtn = btnPlay.innerText
+  if (textBtn == 'Play') {
+    btnPlay.innerText = 'Reset'
+
+  } else {
+    btnPlay.innerText = 'Play'
+    inputNameplayer_1_X.value = ''
+    inputNamePlayer_2_O.value = ''
+  }
+}
+
+function activeBoard() {
+  document.querySelectorAll('.square').forEach(square => {
+    square.addEventListener('click', function (ev) {
+      console.log(ev.target);
+    })
+  });
+}
+
 function startGame(play1, play2, clickBtnPlay) {
   const letsPlay = checkNameInputField(play1, play2, clickBtnPlay)
   if (letsPlay) {
-    console.log('PLAY');
+    btnPlayResetGame()
+    activeBoard()
   } else {
     console.log('NOT PLAY');
   }
 }
-
-
-document.querySelectorAll('.square').forEach(square => {
-  square.addEventListener('click', function (ev) {
-    console.log(ev.target);
-
-  })
-
-});
