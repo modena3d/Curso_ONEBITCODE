@@ -45,53 +45,55 @@ function btnPlayResetGame() {
   }
 }
 
-
-
-// function checkTimePlay(playerName_1, playerName_2, clickBtnPlay) {
-//   const nametoShowInDisplayToPlay = toggleClassAddButtonPlay(playerName_1, playerName_2, clickBtnPlay)
-//   if (nametoShowInDisplayToPlay == playerName_1) {
-//     displayMesage.innerText = `Vez do ${playerName_1}: (X) jogar`
-//     return playerName_1
-//   } else {
-//     displayMesage.innerText = `Vez do ${playerName_2}: (O) jogar`
-//     return playerName_2
-//   }
-// }
-function checkTimePlay(playerName_1, playerName_2) {
-  if (board.classList.contains('playerName_1')) {
-    board.classList.remove('playerName_1')
-    board.classList.add('playerName_2')
-    displayMesage.innerText = `Vez do ${playerName_1}: (X) jogar`
-    return playerName_2
-  } else {
-    board.classList.remove('playerName_2')
-    board.classList.add('playerName_1')
-    displayMesage.innerText = `Vez do ${playerName_2}: (O) jogar`
-    return playerName_1
-  }
-}
-function activeBoard(playerName_1, playerName_2) {
-  let squareComparatorNumber = '';
+function squareNumberCliked(playerName_1, playerName_2, playerTime) {
+  let squareNumber;
   document.querySelectorAll('.square').forEach(square => {
     square.addEventListener('click', function (ev) {
-      squareComparatorNumber = ev.target.dataset.number
+      squareNumber = ev.target.dataset.number
       ev.target.removeEventListener('click', arguments.callee);
-      console.log(squareComparatorNumber);
+      console.log(squareNumber);
+      add_X_or_O_toTheSquare(playerTime, playerName_1, squareNumber)
+
     })
   });
 }
 
-function playersClicks(playerName) {
-  if (playerName) {
+function checkTimePlay(playerName_1, playerName_2) {
+  if (board.classList.contains('playerName_1')) {
+    board.classList.remove('playerName_1')
+    board.classList.add('playerName_2')
+    displayMesage.innerText = `Vez do ${playerName_2}: (O) jogar`
+    return playerName_2
+  } else {
+    board.classList.remove('playerName_2')
+    board.classList.add('playerName_1')
+    displayMesage.innerText = `Vez do ${playerName_1}: (X) jogar`
+    return playerName_1
+  }
+}
+
+function add_X_or_O_toTheSquare(playerTime, playerName_1, squareNumber) {
+  console.log('NOME:', playerTime);
+  console.log('SQUARE_NUM: ', squareNumber);
+  console.log(playerTime == playerName_1);
+  
+  if (playerTime == playerName_1) {
+    const square = document.querySelector(`[data-number="${squareNumber}"]`)
+    console.log(square);
+    square.innerText = 'X'
     const squares = []
+  }else{
+    const square = document.querySelector(`[data-number="${squareNumber}"]`)
+    square.innerText = 'O'
+
   }
 }
 
 function startGame(playerName_1, playerName_2) {
   const letsPlay = checkNameInputField(playerName_1, playerName_2)
   if (letsPlay) {
-    activeBoard(playerName_1, playerName_2)
-    checkTimePlay(playerName_1, playerName_2)
+    const playerTime = checkTimePlay(playerName_1, playerName_2)
+    squareNumberCliked(playerName_1, playerName_2, playerTime)
     btnPlayResetGame()
   } else {
     console.log('NOT PLAY');
