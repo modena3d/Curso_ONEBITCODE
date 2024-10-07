@@ -6,7 +6,7 @@ const allowedKeys = ["(", ")", "/", "*", "-", "+", "9", "8", "7", "6", "5", "4",
 
 document.querySelectorAll(".charKey").forEach(function (charKeyBtn) {
   charKeyBtn.addEventListener("click", function () {
-    const value = charKeyBtn.dataset.value
+    const value = charKeyBtn.dataset.number.value
     input.value += value
   })
 })
