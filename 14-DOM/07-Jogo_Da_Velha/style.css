@@ -70,3 +70,9 @@ hr {
   border: solid 1px;
   background-color: #eeeeee;
 }
+.wins {
+  background-color: #39c737;
+}
+.loser {
+  background-color: #c73737;
+}

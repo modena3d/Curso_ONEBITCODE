@@ -70,6 +70,8 @@ function btnPlayResetGame() {
     disableSquareClick();
     document.querySelectorAll(".square").forEach((square) => {
       square.innerText = "";
+      square.classList.remove('wins')
+      square.classList.remove('loser')
     });
     squaresPlayer1 = []
     squaresPlayer2 = []
@@ -97,7 +99,6 @@ function handleSquareClick(ev) {
 
 function add_X_or_O_toTheSquare(playerTime) {
   let id = Number(clickedSquare)
-  console.log(id);
   if (playerTime == playerName_1) {
     const square = document.querySelector(`[data-number="${id}"]`)
     square.innerText = 'O'
@@ -111,8 +112,6 @@ function add_X_or_O_toTheSquare(playerTime) {
 }
 
 function sequenceChecker(squaresPlayer1, squaresPlayer2) {
-  console.log('Sq1: ', squaresPlayer1);
-  console.log('Sq2: ', squaresPlayer2);
   //123
   const sequence_1 = [1, 2, 3]
   const p1Sq1 = sequence_1.every(num => squaresPlayer1.includes(num));
@@ -166,17 +165,142 @@ function sequenceChecker(squaresPlayer1, squaresPlayer2) {
     p2Sq7,
     p2Sq8
   }
-  paintSquare(checkWinnerPlayer_1, checkWinnerPlayer_2)
+  const winner = getIdSequenceWin(checkWinnerPlayer_1, checkWinnerPlayer_2)
+  if (winner.won) {
+    paintSquares(winner);
+  }
 }
 
-function paintSquare(checkWinnerPlayer_1, checkWinnerPlayer_2) {
+function getIdSequenceWin(checkWinnerPlayer_1, checkWinnerPlayer_2) {
   const p1 = checkWinnerPlayer_1
   const p2 = checkWinnerPlayer_2
-  if (p1.p1Sq1 || p1.p1Sq2 || p1.p1Sq3 || p1.p1Sq4 || p1.p1Sq5 || p1.p1Sq6 || p1.p1Sq7 || p1.p1Sq8) {
-    console.log('P1 WIN');
+  const winner = {
+    won: false
   }
-  if (p2.p2Sq1 || p2.p2Sq2 || p2.p2Sq3 || p2.p2Sq4 || p2.p2Sq5 || p2.p2Sq6 || p2.p2Sq7 || p2.p2Sq8) {
-    console.log('P2 WIN');
+  const hasWin1 = Object.values(p1).some(value => value === true);
+  if (hasWin1) {
+    const idResultSequence = Object.values(p1).findIndex(value => value === true) + 1;
+    winner.nome = playerName_1
+    winner.id = idResultSequence.toString()
+    winner.won = true;
+    return winner;
   }
-
+  const hasWin2 = Object.values(p2).some(value => value === true);
+  if (hasWin2) {
+    const idResultSequence = Object.values(p2).findIndex(value => value === true) + 1;
+    winner.nome = playerName_2
+    winner.id = idResultSequence.toString()
+    winner.won = true;
+    return winner;
+  }
+  return winner
 }
+
+function paintSquares(winner) {
+  const squares = document.querySelectorAll('.square')
+  //1//123  
+  if (winner.id === '1') {
+    squares.forEach(square => {
+      const number = square.dataset.number;
+      if (number === '1' || number === '2' || number === '3') {
+        square.classList.add('wins')
+        displayMesage.innerText = `O jogador: ${winner.nome}, venceu!!!`
+      } else {
+        square.classList.add('loser')
+      }
+      disableSquareClick();
+    });
+  }
+  //2//456
+  if (winner.id === '2') {
+    squares.forEach(square => {
+      const number = square.dataset.number;
+      if (number === '4' || number === '5' || number === '6') {
+        square.classList.add('wins')
+        displayMesage.innerText = `O jogador: ${winner.nome}, venceu!!!`
+      } else {
+        square.classList.add('loser')
+      }
+      disableSquareClick();
+    });
+  }
+  //3//789
+  if (winner.id === '3') {
+    squares.forEach(square => {
+      const number = square.dataset.number;
+      if (number === '7' || number === '8' || number === '9') {
+        square.classList.add('wins')
+        displayMesage.innerText = `O jogador: ${winner.nome}, venceu!!!`
+      } else {
+        square.classList.add('loser')
+      }
+      disableSquareClick();
+    });
+  }
+  //4//147
+  if (winner.id === '4') {
+    squares.forEach(square => {
+      const number = square.dataset.number;
+      if (number === '1' || number === '4' || number === '7') {
+        square.classList.add('wins')
+        displayMesage.innerText = `O jogador: ${winner.nome}, venceu!!!`
+      } else {
+        square.classList.add('loser')
+      }
+      disableSquareClick();
+    });
+  }
+  //5//258
+  if (winner.id === '5') {
+    squares.forEach(square => {
+      const number = square.dataset.number;
+      if (number === '2' || number === '5' || number === '8') {
+        square.classList.add('wins')
+        displayMesage.innerText = `O jogador: ${winner.nome}, venceu!!!`
+      } else {
+        square.classList.add('loser')
+      }
+      disableSquareClick();
+    });
+  }
+  //6//369
+  if (winner.id === '6') {
+    squares.forEach(square => {
+      const number = square.dataset.number;
+      if (number === '3' || number === '6' || number === '9') {
+        square.classList.add('wins')
+        displayMesage.innerText = `O jogador: ${winner.nome}, venceu!!!`
+      } else {
+        square.classList.add('loser')
+      }
+      disableSquareClick();
+    });
+  }
+  //7//159
+  if (winner.id === '7') {
+    squares.forEach(square => {
+      const number = square.dataset.number;
+      if (number === '1' || number === '5' || number === '9') {
+        square.classList.add('wins')
+        displayMesage.innerText = `O jogador: ${winner.nome}, venceu!!!`
+      } else {
+        square.classList.add('loser')
+      }
+      disableSquareClick();
+    });
+  }
+  //8//357
+  if (winner.id === '8') {
+    squares.forEach(square => {
+      const number = square.dataset.number;
+      if (number === '3' || number === '5' || number === '7') {
+        square.classList.add('wins')
+        displayMesage.innerText = `O jogador: ${winner.nome}, venceu!!!`
+      } else {
+        square.classList.add('loser')
+      }
+      disableSquareClick();
+    });
+  }
+}
+
