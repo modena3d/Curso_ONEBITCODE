@@ -3,26 +3,27 @@ const inputNamePlayer_2_O = document.getElementById("inputNamePlayer_2");
 const displayMesage = document.getElementById("displayMesage");
 const board = document.querySelector(".board");
 let clickedSquare = null;
-
+let playerName_1 = ''
+let playerName_2 = ''
 document
   .getElementById("btnPlay")
   .addEventListener("click", function (clickBtnPlay) {
-    const playerName_1 = inputNameplayer_1_X.value;
-    const playerName_2 = inputNamePlayer_2_O.value;
-    startGame(playerName_1, playerName_2);
+    playerName_1 = inputNameplayer_1_X.value;
+    playerName_2 = inputNamePlayer_2_O.value;
+    startGame();
   });
 
-function startGame(playerName_1, playerName_2) {
+function startGame() {
   console.log("BORD: ", board.classList.value);
-
-  let playGame = checkNameInputField(playerName_1, playerName_2);
+  let playGame = checkNameInputField();
   if (playGame) {
     activeSquareClick();
-    checkTimePlay(playerName_1, playerName_2);
+    checkTimePlay();
     btnPlayResetGame();
   }
 }
-function checkTimePlay(playerName_1, playerName_2) {
+function checkTimePlay() {
+  console.log(`Quadrado clicado:`, clickedSquare);
   if (board.classList.contains("playerName_1")) {
     console.log(board.classList.value);
     board.classList.remove("playerName_1");
@@ -38,7 +39,7 @@ function checkTimePlay(playerName_1, playerName_2) {
   }
 }
 
-function checkNameInputField(playerName_1, playerName_2) {
+function checkNameInputField() {
   if (playerName_1 == "" || playerName_2 == "") {
     if (playerName_1 == "" && playerName_2 !== "") {
       displayMesage.innerText = `Preencha o nome do jogador 1`;
@@ -93,5 +94,6 @@ function handleSquareClick(ev) {
   clickedSquare = squareNumber;
   console.log(`Quadrado clicado:`, squareNumber);
   ev.target.removeEventListener("click", handleSquareClick);
-  return squareNumber;
 }
+
+
