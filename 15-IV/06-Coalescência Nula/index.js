@@ -1,6 +1,6 @@
-let a = 0
+let a = 0// false
 
-let b = a || 42
+let b = a || 42 
 
 console.log({ a, b })
 
