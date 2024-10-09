@@ -10,3 +10,4 @@ console.log(filtrados);
 const numbers = [...coisas.frutas[4]].filter(vl => vl === 'a').map(vl => vl)
 console.log(numbers);
 console.log(coisas.numbers);
+
