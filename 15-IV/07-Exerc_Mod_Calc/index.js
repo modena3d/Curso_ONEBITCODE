@@ -10,24 +10,17 @@
 // materiais dessa aula.
 import calculate from "./calculate.js";
 import { copyToClipboard } from "./copyToClipboard.js";
-import { clear, keydown } from "./events.js";
+import { charKey, clear, keydown } from "./events.js";
 import themeSwitcher from "./themeSwitcher.js";
 
 const input = document.getElementById("input")
 
 document.querySelectorAll(".charKey").forEach(function (charKeyBtn) {
-  charKeyBtn.addEventListener("click", function () {
-    const value = charKeyBtn.dataset.number.value
-    input.value += value
-  })
+  charKeyBtn.addEventListener("click", charKey)
 })
 
 document.getElementById("clear").addEventListener("click", clear)
-
 input.addEventListener("keydown", keydown)
-
 document.getElementById("equal").addEventListener("click", calculate)
-
 document.getElementById("copyToClipboard").addEventListener("click", copyToClipboard)
-
 document.getElementById("themeSwitcher").addEventListener("click", themeSwitcher)

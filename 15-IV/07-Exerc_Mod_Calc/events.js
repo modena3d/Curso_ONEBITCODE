@@ -22,4 +22,9 @@ function keydown(ev) {
     input.focus()
   }
 
-  export {keydown, clear}
+  function charKey(ev) {
+    const value = ev.currentTarget.dataset.value
+    input.value += value
+  }
+
+  export {keydown, clear, charKey}
