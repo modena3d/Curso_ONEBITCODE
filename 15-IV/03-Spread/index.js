@@ -25,3 +25,7 @@ frutasObjClone.test = 'Teste'
 console.log({frutasObj,frutasObjClone});
 
 console.log(frutasObjClone[2]);
+
+const numbers = [1,2,3,'asasa',5,6,7,8,9]
+
+console.log(...numbers[3]);
