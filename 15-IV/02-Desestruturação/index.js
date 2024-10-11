@@ -5,13 +5,32 @@ const person = {
     parents: ['Giovanna', 'Bruna']
 }
 
-const name2 = person.name
+const { name: nome } = person
 
-const {name, job, parents } = person
+console.log(nome);
 
-console.log(name2, name, job);
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8]
 
-const [filha, Esposa] = parents
+let [,,,carro,...restosss] = numbers
 
-console.log(filha, Esposa); 
+carro = 'car'
 
+console.log(carro);
+
+let [teste, ok, ok2] = numbers
+
+console.log(ok);
+
+function createUser({name, job, parents}) {
+    const id = 18545
+    return {
+        id,
+        name,
+        job,
+        parents
+    }
+}
+
+const Maria = createUser(person)
+Maria.name = 'Maria'
+console.log(Maria.name);
