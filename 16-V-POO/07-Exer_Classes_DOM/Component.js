@@ -17,15 +17,26 @@
 // 4-Ela também deve possuir um método render para adicionar o elemento na página que 
 // poderá ser chamado pela instância a qualquer momento.
 
-class Component {
-    constructor(name) {
-        this.name = name
-        build(this.name)
+export default class Component {
+    #elem = null
+    constructor(tag, parent, text) {
+        this.tag = tag
+        this.parent = parent instanceof HTMLElement ? parent : null;
+        this.text = text
+        this.build();
     }
-    build(element){
-        document.createElement(`${element}`)
+    build() {
+        this.#elem = document.createElement(this.tag);
+        this.#elem.innerText = this.text
+        console.log(this.#elem);
+        return this.#elem
     }
-    render(){
-        
+    render() {
+        if (this.parent) {
+            this.parent.appendChild(this.#elem); // Corrigido: agora acessa corretamente o elemento pai
+        } else {
+            console.error("Nenhum elemento pai foi fornecido.");
+        }
     }
 }
+
