@@ -1,3 +1,5 @@
+// 5-Uma classe específica para elementos input, que deve ser uma subclasse 
+// da classe Component.
 import Component from "./Component.js";
 
 export default class Input extends Component {
