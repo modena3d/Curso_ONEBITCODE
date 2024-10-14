@@ -25,6 +25,9 @@ export default class Component {
         this.text = text
         this.build();
     }
+    getElement() {
+        return this.#elem
+    }
     build() {
         this.#elem = document.createElement(this.tag);
         this.#elem.innerText = this.text

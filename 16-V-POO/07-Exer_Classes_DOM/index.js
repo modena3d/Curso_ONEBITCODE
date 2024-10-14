@@ -10,7 +10,10 @@
 //     instâncias das classes Component e suas subclasses).
 
 import Component from './Component.js'; // Import usando ES6 modules
+import Input from './Input.js'
 
-const h1 = new Component('h1', document.body , '----'); // Instancia o Component com 'h1'
+const h1 = new Component('h1',document.body, '----'); // Instancia o Component com 'h1'
 h1.render()
 
+const input1 = new Input('text', 'InputText', document.body )
+input1.render()
