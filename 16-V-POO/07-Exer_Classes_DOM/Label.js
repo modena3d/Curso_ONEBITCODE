@@ -9,8 +9,5 @@ export default class Label extends Component{
         console.log(parent);
         
     }
-    brLine(){
-        const br = document.createElement('br');
-        this.parent.appendChild(br)
-    }
+    
 }
